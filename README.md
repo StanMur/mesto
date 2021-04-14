@@ -14,11 +14,11 @@
 
 **Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/5S2WSbEFL6awjVWJ0NWL8Q/Sprint-3_-Russia-_-desktop-mobile?node-id=28503%3A0)
+* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
 **Технологии**
-Применялось при вёрстке: методология БЭМ, файловая структура по БЭМ, Flex, Grid.
+Применялось при вёрстке: методология БЭМ, файловая структура БЭМ nested, Flex, Grid, JavaScript.
 
 * [Ссылка на проект в GitHub Pages](https://github.com/StanMur/russian-travel)
-* [Ссылка проекта на хостинге GitHub Pages](https://stanmur.github.io/russian-travel/)
+* [Ссылка проекта на хостинге GitHub Pages](https://stanmur.github.io/mesto/index.html)
 
