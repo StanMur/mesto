@@ -3,3 +3,11 @@
   align-items: center;
   padding-top: 40px;
 }
+
+@media (max-width: 767px) {
+  .profile__author {
+    display: flex;
+    flex-direction: column;
+    padding-top: 42px;
+  }
+}

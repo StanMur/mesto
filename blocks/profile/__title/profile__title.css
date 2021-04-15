@@ -5,3 +5,12 @@
   color: #ffffff;
   margin: 0;
 }
+
+@media (max-width: 767px) {
+  .profile__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 27px;
+    text-align: center;
+  }
+}
