@@ -1,0 +1,19 @@
+.popup {
+  background: #00000079;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .popup {
+    align-items: normal;
+    padding-top: 123px;
+  }
+}

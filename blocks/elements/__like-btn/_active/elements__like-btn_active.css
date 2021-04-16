@@ -1,0 +1,9 @@
+.elements__like-btn_active {
+    background: url(../../../../images/heart-black.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    outline: none;
+    width: 22px;
+    height: 19px;
+}

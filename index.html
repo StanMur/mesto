@@ -8,6 +8,37 @@
     <title>Жак-Ив Кусто</title>
   </head>
   <body class="body">
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close-btn">
+          <img
+            class="popup__close-icon"
+            src="images/Close-Icon.svg"
+            alt="Закрыть"
+          />
+        </button>
+        <form class="popup__form" action="#">
+          <p class="popup__text">Редактировать профиль</p>
+          <fieldset class="popup__input-container">
+            <input
+              class="popup__form-name"
+              type="text"
+              name="firstName"
+              value="Жак-Ив Кусто"
+              required
+            />
+            <input
+              class="popup__form-job"
+              type="text"
+              name="lastName"
+              value="Исследователь океана"
+              required
+            />
+            <button class="popup__form-btn" type="submit">Сохранить</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
     <header class="header">
       <img class="logo" src="images/logo.svg" alt="Логотип" />
     </header>
@@ -18,8 +49,12 @@
           <div class="profile__name">
             <div class="profile__rectangle">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button class="profile__edit-btn">
-                <img class="profile__edit-img" src="images/rectangle.svg" alt="Редактировать профиль" />
+              <button class="profile__edit-btn" title="Редактировать профиль">
+                <img
+                  class="profile__edit-img"
+                  src="images/rectangle.svg"
+                  alt="Редактировать профиль"
+                />
               </button>
             </div>
             <h2 class="profile__subtitle">Исследователь океана</h2>
@@ -39,9 +74,7 @@
             />
             <div class="elements__block-like">
               <h2 class="elements__subtitle">Карачаевск</h2>
-              <button class="elements__like-btn">
-                <img class="elements__like" src="images/heart.svg" alt="Лайк" />
-              </button>
+              <button class="elements__like-btn"></button>
             </div>
           </li>
           <li class="elements__item">
@@ -52,9 +85,7 @@
             />
             <div class="elements__block-like">
               <h2 class="elements__subtitle">Гора Эльбрус</h2>
-              <button class="elements__like-btn">
-                <img class="elements__like" src="images/heart.svg" alt="Лайк" />
-              </button>
+              <button class="elements__like-btn"></button>
             </div>
           </li>
           <li class="elements__item">
@@ -65,9 +96,7 @@
             />
             <div class="elements__block-like">
               <h2 class="elements__subtitle">Домбай</h2>
-              <button class="elements__like-btn">
-                <img class="elements__like" src="images/heart.svg" alt="Лайк" />
-              </button>
+              <button class="elements__like-btn"></button>
             </div>
           </li>
           <li class="elements__item">
@@ -78,9 +107,7 @@
             />
             <div class="elements__block-like">
               <h2 class="elements__subtitle">Гора Эльбрус</h2>
-              <button class="elements__like-btn">
-                <img class="elements__like" src="images/heart.svg" alt="Лайк" />
-              </button>
+              <button class="elements__like-btn"></button>
             </div>
           </li>
           <li class="elements__item">
@@ -91,9 +118,7 @@
             />
             <div class="elements__block-like">
               <h2 class="elements__subtitle">Домбай</h2>
-              <button class="elements__like-btn">
-                <img class="elements__like" src="images/heart.svg" alt="Лайк" />
-              </button>
+              <button class="elements__like-btn"></button>
             </div>
           </li>
           <li class="elements__item">
@@ -104,9 +129,7 @@
             />
             <div class="elements__block-like">
               <h2 class="elements__subtitle">Карачаево-Черкесия</h2>
-              <button class="elements__like-btn">
-                <img class="elements__like" src="images/heart.svg" alt="Лайк" />
-              </button>
+              <button class="elements__like-btn"></button>
             </div>
           </li>
         </ul>
