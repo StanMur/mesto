@@ -1,4 +1,4 @@
-.popup__text {
+.popup__subtitle {
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 767px) {
-  .popup__text {
+  .popup__subtitle {
     font-size: 18px;
   }
 }

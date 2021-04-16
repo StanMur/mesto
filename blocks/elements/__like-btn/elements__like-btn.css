@@ -6,7 +6,7 @@
   background-size: 100%;
   cursor: pointer;
   outline: none;
-  width: 22px;
+  min-width: 22px;
   height: 19px;
 }
 

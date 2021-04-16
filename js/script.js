@@ -12,8 +12,6 @@ function openPopup() {
 
 function closePopup() {
     popup.classList.remove('popup_change_display');
-    nameInput.value = ('Жак-Ив Кусто');
-    jobInput.value = ('Исследователь океана');
 };
 
 //////////////////работа с инпутами//////////////////
@@ -21,8 +19,8 @@ function closePopup() {
 let formElement = document.querySelector('.popup__form');
 let buttonSave = document.querySelector('.popup__form-btn');
 
-let nameInput = document.querySelector('.popup__form-name');
-let jobInput = document.querySelector('.popup__form-job');
+let nameInput = formElement.elements.name;
+let jobInput = formElement.elements.about;
 
 let titleChange = document.querySelector('.profile__title');
 let subtitleChange = document.querySelector('.profile__subtitle');
@@ -38,13 +36,4 @@ function formSubmit(evt) {
 
 formElement.addEventListener('submit', formSubmit);
 
-//////////////////лайки////////////////////
-let buttonLike = document.querySelectorAll('.elements__like-btn');
 
-for (let i = 0; i < buttonLike.length; i++) {
-    buttonLike[i].addEventListener('click', changeBackground);
-};
-
-function changeBackground() {
-    this.classList.toggle('elements__like-btn_active');
-};

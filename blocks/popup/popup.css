@@ -11,9 +11,3 @@
   z-index: 1;
 }
 
-@media (max-width: 767px) {
-  .popup {
-    align-items: normal;
-    padding-top: 123px;
-  }
-}
