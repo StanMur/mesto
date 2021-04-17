@@ -11,7 +11,7 @@ let subtitleChange = document.querySelector('.profile__subtitle');
 function openPopup() {
     popup.classList.toggle('popup_change_display');
     nameInput.value = titleChange.textContent;
-    jobInput.value = jsubtitleChange.textContent;
+    jobInput.value = subtitleChange.textContent;
 };
 
 function closePopup() {
