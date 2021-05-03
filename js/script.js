@@ -96,7 +96,6 @@ function cardSubmit(titleImg, imageInput) {
 
   imageClick.addEventListener('click', () => {
     openPopupImages(imageClick.src, imageText.textContent);
-    console.log(123);
   });
 
   initialCardElement.querySelector('.elements__like-btn').addEventListener('click', function (evt) {
