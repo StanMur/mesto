@@ -15,8 +15,6 @@ const closeImagePopupBtn = document.querySelector('.popup__close-btn_img');
 const popupContainer = document.querySelector('.popup__modal-img');
 const popupImgTxt = document.querySelector('.popup__modal-txt');
 const cardTemplate = document.querySelector('.add-to-card'); 
-const inputCardsName = document.querySelector('#titleInput');
-const inputCardsLink = document.querySelector('#imageInput');
 const formEditCards = document.querySelector('.popup__form_profile_cards');
 const cardsContainer = document.querySelector('.elements__items'); 
 
@@ -51,7 +49,6 @@ initialCards.forEach((element) => {
   const initialCardElement = createCard(element.name, element.link);
   addCard(initialCardElement);
 });
-
 
 function openPopup(popup) { 
   popup.classList.toggle('popup_change_display');
