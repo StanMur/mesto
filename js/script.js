@@ -10,7 +10,6 @@ const userProfession = document.querySelector('.profile__subtitle');
 const popupNewCard = document.querySelector('.popup_type_new-card');
 const openAddCardPopupBtn = document.querySelector('.profile__open-add-card');
 const closeAddCardPopupBtn = document.querySelector('.popup__close-btn_cards');
-const addCardBtn = document.querySelector('.popup__form-btn-cards');
 const popupBigImage = document.querySelector('.popup_type_images');
 const closeImagePopupBtn = document.querySelector('.popup__close-btn_img');
 const popupContainer = document.querySelector('.popup__modal-img');
@@ -49,7 +48,8 @@ const initialCards = [{
 ];
 
 initialCards.forEach((element) => {
- showCard(element.name, element.link);
+  const initialCardElement = createCard(element.name, element.link);
+  addCard(initialCardElement);
 });
 
 
@@ -60,12 +60,6 @@ function openPopup(popup) {
 function closePopup(popup) { 
   popup.classList.remove('popup_change_display');
 };
-
-function openPopupProfile () {
-  nameInput.value = userName.textContent;
-  jobInput.value = userProfession.textContent;
-  openPopup(popupEditProfile);
-}
 
 function openPopupImages(imageInput, titleImg) {
   popupContainer.src = imageInput;
@@ -83,13 +77,13 @@ function formEditProfileSubmitHandler(evt) {
 
 function formEditCardsSubmitHandler(evt) { 
   evt.preventDefault();
-  const cardInputs = newCard(titleInput.value, imageInput.value);
+  const cardInputs = createCard(titleInput.value, imageInput.value);
   addCard(cardInputs);
   closePopup(popupNewCard);
 };
 
 //клоны, лайки, удаление
-function showCard(titleImg, imageInput) {
+function createCard(titleImg, imageInput) {
   
   const initialCardElement = cardTemplate.content.querySelector('.elements__item').cloneNode(true);
   const imageText = initialCardElement.querySelector('.elements__subtitle');
@@ -112,26 +106,15 @@ function showCard(titleImg, imageInput) {
     listItem.remove();
   });
 
-  createCard(cardsContainer, initialCardElement);
+  return initialCardElement;
 };
 
-function createCard (cardContainer, nameClone) {
-  cardContainer.prepend(nameClone);
-};
-
-//добавление карточек(инпуты)
-
-function addCard() {
-  showCard(inputCardsName.value, inputCardsLink.value);
-  inputCardsName.value = '';
-  inputCardsLink.src = '';
-  closePopup(popupNewCard);
-};
+function addCard(initialCardElement) { 
+  cardsContainer.prepend(initialCardElement);
+}
 
 formEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
 formEditCards.addEventListener('submit', formEditCardsSubmitHandler);
-
-addCardBtn.addEventListener('click', addCard);
 
 openEditProfilePopupBtn.addEventListener('click', () => {
   nameInput.value = userName.textContent;
