@@ -21,6 +21,7 @@
           class="popup__form popup__form_profile_change"
           action="#"
           name="send-form"
+          novalidate
         >
           <h2 class="popup__subtitle">Редактировать профиль</h2>
           <fieldset class="popup__input-container">
@@ -28,18 +29,26 @@
               class="popup__form-name"
               type="text"
               name="name"
+              id="username"
               value="Мураховский Станислав"
               placeholder="Имя"
+              minlength="2"
+              maxlength="40"
               required
             />
+            <span class="popup__form-input-error" id="username-error"></span>
             <input
               class="popup__form-name"
               type="text"
               name="about"
+              id="about-input"
               value="Веб-разработчик"
               placeholder="Вид деятельности"
+              minlength="2"
+              maxlength="200"
               required
             />
+            <span class="popup__form-input-error" id="about-input-error"></span>
             <button class="popup__form-btn" type="submit">Сохранить</button>
           </fieldset>
         </form>
@@ -58,6 +67,7 @@
           class="popup__form popup__form_profile_cards"
           action="#"
           name="send-form"
+          novalidate
         >
           <h2 class="popup__subtitle">Новое место</h2>
           <fieldset class="popup__input-container">
@@ -68,8 +78,11 @@
               name="title"
               value=""
               placeholder="Название"
+              minlength="2"
+              maxlength="30"
               required
             />
+            <span class="popup__form-input-error" id="titleInput-error"></span>
             <input
               id="imageInput"
               class="popup__form-name"
@@ -79,6 +92,7 @@
               placeholder="Ссылка на картинку"
               required
             />
+            <span class="popup__form-input-error" id="imageInput-error"></span>
             <button class="popup__form-btn popup__form-btn-cards" type="submit">
               Сохранить
             </button>
@@ -150,17 +164,14 @@
             alt="Корзина"
           />
         </button>
-        <img
-          class="elements__items-img"
-          src="#"
-          alt="#"
-        />
+        <img class="elements__items-img" src="#" alt="#" />
         <div class="elements__block-like">
           <h2 class="elements__subtitle">Карачаевск</h2>
           <button class="elements__like-btn" type="button"></button>
         </div>
       </li>
     </template>
+    <script src="js/validate.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

@@ -1,4 +1,3 @@
-
 const popupEditProfile = document.querySelector('.popup_type_edit');
 const openEditProfilePopupBtn = document.querySelector('.profile__edit-btn');
 const closeEditProfilePopupBtn = document.querySelector('.popup__close-btn_profile');
@@ -14,34 +13,43 @@ const popupBigImage = document.querySelector('.popup_type_images');
 const closeImagePopupBtn = document.querySelector('.popup__close-btn_img');
 const popupContainer = document.querySelector('.popup__modal-img');
 const popupImgTxt = document.querySelector('.popup__modal-txt');
-const cardTemplate = document.querySelector('.add-to-card'); 
+const cardTemplate = document.querySelector('.add-to-card');
 const formEditCards = document.querySelector('.popup__form_profile_cards');
-const cardsContainer = document.querySelector('.elements__items'); 
+const cardsContainer = document.querySelector('.elements__items');
+let overlayClick = document.querySelectorAll('.popup');
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-name',
+  submitButtonSelector: '.popup__form-btn',
+  inputErrorClass: 'popup__form-name_error',
+  errorActiveClass: 'popup__form-input-error_active'
+};
 
 const initialCards = [{
-  name: 'Cycling',
-  link: 'https://images.unsplash.com/photo-1554201267-006ead010542?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80'
-},
-{
-  name: 'Skateboard',
-  link: 'https://images.unsplash.com/photo-1554286923-8a066d8ec541?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80'
-},
-{
-  name: 'Motorsport',
-  link: 'https://images.unsplash.com/photo-1533709957924-e946c7e881c5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-},
-{
-  name: 'Snowboard',
-  link: 'https://images.unsplash.com/photo-1488580923008-6f98dfbd7a25?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80'
-},
-{
-  name: 'Wingsuit',
-  link: 'https://images.unsplash.com/photo-1533652475678-12f52b4fdd53?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1267&q=80'
-},
-{
-  name: 'Free Fly',
-  link: 'https://images.unsplash.com/photo-1474623809196-26c1d33457cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80'
-}
+    name: 'Cycling',
+    link: 'https://images.unsplash.com/photo-1554201267-006ead010542?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80'
+  },
+  {
+    name: 'Skateboard',
+    link: 'https://images.unsplash.com/photo-1554286923-8a066d8ec541?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80'
+  },
+  {
+    name: 'Motorsport',
+    link: 'https://images.unsplash.com/photo-1533709957924-e946c7e881c5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+  },
+  {
+    name: 'Snowboard',
+    link: 'https://images.unsplash.com/photo-1488580923008-6f98dfbd7a25?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80'
+  },
+  {
+    name: 'Wingsuit',
+    link: 'https://images.unsplash.com/photo-1533652475678-12f52b4fdd53?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1267&q=80'
+  },
+  {
+    name: 'Free Fly',
+    link: 'https://images.unsplash.com/photo-1474623809196-26c1d33457cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80'
+  }
 
 ];
 
@@ -50,38 +58,56 @@ initialCards.forEach((element) => {
   addCard(initialCardElement);
 });
 
-function openPopup(popup) { 
+function openPopup(popup) {
   popup.classList.toggle('popup_change_display');
+  document.addEventListener('keydown', ClosePopupEscape);
 };
 
-function closePopup(popup) { 
+function closePopup(popup) {
   popup.classList.remove('popup_change_display');
+  document.removeEventListener('keydown', ClosePopupEscape);
 };
+
+function ClosePopupEscape(event) {
+  if (event.key === 'Escape') {
+    closePopup(document.querySelector('.popup_change_display'));
+  }
+}
 
 function openPopupImages(imageInput, titleImg) {
   popupContainer.src = imageInput;
   popupImgTxt.textContent = titleImg;
   popupContainer.alt = titleImg;
   openPopup(popupBigImage);
- };
+};
 
 function formEditProfileSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   userName.textContent = nameInput.value;
   userProfession.textContent = jobInput.value;
-  closePopup(popupEditProfile); 
+  closePopup(popupEditProfile);
 };
 
-function formEditCardsSubmitHandler(evt) { 
+function formEditCardsSubmitHandler(evt) {
   evt.preventDefault();
   const cardInputs = createCard(titleInput.value, imageInput.value);
   addCard(cardInputs);
   closePopup(popupNewCard);
 };
 
+///////////////////  закрытие через оверлей  /////////////////////////
+for (let i = 0; i < overlayClick.length; i++) {
+  overlayClick[i].addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) {
+      event.target.closest('.popup').classList.remove('popup_change_display');
+    }
+
+  });
+}
+
 //клоны, лайки, удаление
 function createCard(titleImg, imageInput) {
-  
+
   const initialCardElement = cardTemplate.content.querySelector('.elements__item').cloneNode(true);
   const imageText = initialCardElement.querySelector('.elements__subtitle');
   const imageClick = initialCardElement.querySelector('.elements__items-img');
@@ -106,7 +132,7 @@ function createCard(titleImg, imageInput) {
   return initialCardElement;
 };
 
-function addCard(initialCardElement) { 
+function addCard(initialCardElement) {
   cardsContainer.prepend(initialCardElement);
 }
 
@@ -133,3 +159,4 @@ closeEditProfilePopupBtn.addEventListener('click', () => {
 });
 
 
+enableValidation(config);
