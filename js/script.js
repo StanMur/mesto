@@ -16,7 +16,8 @@ const popupImgTxt = document.querySelector('.popup__modal-txt');
 const cardTemplate = document.querySelector('.add-to-card');
 const formEditCards = document.querySelector('.popup__form_profile_cards');
 const cardsContainer = document.querySelector('.elements__items');
-let overlayClick = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll('.popup');
+const disabledBtn = document.querySelector('.popup__form-btn-cards');
 
 const config = {
   formSelector: '.popup__form',
@@ -60,15 +61,15 @@ initialCards.forEach((element) => {
 
 function openPopup(popup) {
   popup.classList.toggle('popup_change_display');
-  document.addEventListener('keydown', ClosePopupEscape);
+  document.addEventListener('keydown', closePopupEscape);
 };
 
 function closePopup(popup) {
   popup.classList.remove('popup_change_display');
-  document.removeEventListener('keydown', ClosePopupEscape);
+  document.removeEventListener('keydown', closePopupEscape);
 };
 
-function ClosePopupEscape(event) {
+function closePopupEscape(event) {
   if (event.key === 'Escape') {
     closePopup(document.querySelector('.popup_change_display'));
   }
@@ -95,15 +96,13 @@ function formEditCardsSubmitHandler(evt) {
   closePopup(popupNewCard);
 };
 
-///////////////////  закрытие через оверлей  /////////////////////////
-for (let i = 0; i < overlayClick.length; i++) {
-  overlayClick[i].addEventListener('click', (event) => {
-    if (event.target === event.currentTarget) {
-      event.target.closest('.popup').classList.remove('popup_change_display');
+popups.forEach((popup) => {
+  popup.addEventListener('click', (event) => {
+    if (event.target === popup) {
+      closePopup(popup);
     }
-
   });
-}
+});
 
 //клоны, лайки, удаление
 function createCard(titleImg, imageInput) {
@@ -144,9 +143,11 @@ openEditProfilePopupBtn.addEventListener('click', () => {
   jobInput.value = userProfession.textContent;
   openPopup(popupEditProfile);
 });
+
 openAddCardPopupBtn.addEventListener('click', () => {
   openPopup(popupNewCard);
   formEditCards.reset();
+  disabledBtn.disabled = true;
 });
 closeImagePopupBtn.addEventListener('click', () => {
   closePopup(popupBigImage);

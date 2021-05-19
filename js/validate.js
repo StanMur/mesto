@@ -1,7 +1,10 @@
 const hideInputError = (formElement, inputElement, config) => {
     // hide error
     //find error element
-    const {inputErrorClass,errorActiveClass} = config;
+    const {
+        inputErrorClass,
+        errorActiveClass
+    } = config;
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(inputErrorClass);
     errorElement.classList.remove(errorActiveClass);
@@ -10,7 +13,10 @@ const hideInputError = (formElement, inputElement, config) => {
 
 const showInputError = (formElement, inputElement, config) => {
     // show error
-    const { inputErrorClass, errorActiveClass} = config;
+    const {
+        inputErrorClass,
+        errorActiveClass
+    } = config;
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(inputErrorClass);
     errorElement.textContent = inputElement.validationMessage;
@@ -28,7 +34,10 @@ const checkInputValidity = (formElement, inputElement, config) => {
 };
 
 const hazInvalidInput = (inputList) => {
-    return inputList.some(inputElement => !inputElement.validity.valid);
+    // return inputList.some(inputElement => !inputElement.validity.valid);
+    return inputList.some((inputElement) => {
+        return !inputElement.validity.valid;
+    });
 };
 
 const toggleButtonState = (buttonElement, inputList) => {
