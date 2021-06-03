@@ -55,10 +55,10 @@ function closePopupEscape(event) {
   }
 }
 
-function openCardPopup() {
-  document.querySelector('.popup__modal-txt').textContent = this._name;
-  document.querySelector('.popup__modal-img').alt = this._name;
-  document.querySelector('.popup__modal-img').src = this._link;
+function openCardPopup(name, link) {
+  document.querySelector('.popup__modal-txt').textContent = name;
+  document.querySelector('.popup__modal-img').alt = name;
+  document.querySelector('.popup__modal-img').src = link;
   openPopup(popupBigImage);
 }
 
