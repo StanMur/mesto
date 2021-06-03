@@ -1,7 +1,8 @@
 export class Card {
-    constructor(title, image) {
-        this._title = title;
-        this._image = image;
+    constructor({name, link}, handleCardClick) {
+        this._name = name;
+        this._link = link;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -22,24 +23,18 @@ export class Card {
         this._element.remove();
     }
 
-    _openBigImage() {
-        document.querySelector('.popup__modal-txt').textContent = this._title;
-        document.querySelector('.popup__modal-img').alt = this._title;
-        document.querySelector('.popup__modal-img').src = this._image;
-    }
-
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
-        this._element.querySelector('.elements__subtitle').textContent = this._title;
-        this._element.querySelector('.elements__items-img').alt = this._title;
-        this._element.querySelector('.elements__items-img').src = this._image;
+        this._element.querySelector('.elements__subtitle').textContent = this._name;
+        this._element.querySelector('.elements__items-img').alt = this._name;
+        this._element.querySelector('.elements__items-img').src = this._link;
         return this._element;
     }
 
     _setEventListeners() {
-        this._element.querySelector('.elements__items-img').addEventListener('click', () => {
-            this._openBigImage();
+       this._element.querySelector('.elements__items-img').addEventListener('click', () => {
+            this._handleCardClick(this._name, this._link);
         });
 
         this._element.querySelector('.elements__like-btn').addEventListener('click', (evt) => {
@@ -53,3 +48,4 @@ export class Card {
     }
 
 }
+

@@ -35,13 +35,9 @@ const popups = document.querySelectorAll('.popup');
 const disabledBtn = document.querySelector('.popup__form-btn-cards');
 const editProfile = new FormValidator(config, formEditProfile);
 const addCards = new FormValidator(config, formEditCards);
+const inputName = document.querySelector('#titleInput');
+const inputLink = document.querySelector('#imageInput');
 
-initialCards.forEach((element) => {
-  const card = new Card(element.name, element.link);
-  const cardElement = card.generateCard();
-  openPopupImages(cardElement);
-  cardsContainer.append(cardElement);
-});
 
 function openPopup(popup) {
   popup.classList.toggle('popup_change_display');
@@ -59,13 +55,18 @@ function closePopupEscape(event) {
   }
 }
 
-function openPopupImages(cardElement) {
-  const imageClick = cardElement.querySelector('.elements__items-img');
-  imageClick.addEventListener('click', function () {
-    openPopup(popupBigImage);
-  });
+function openCardPopup() {
+  document.querySelector('.popup__modal-txt').textContent = this._name;
+  document.querySelector('.popup__modal-img').alt = this._name;
+  document.querySelector('.popup__modal-img').src = this._link;
+  openPopup(popupBigImage);
+}
 
-};
+initialCards.forEach((initialCards) => {
+  const card = new Card(initialCards, openCardPopup);
+  const cardElement = card.generateCard();
+  cardsContainer.append(cardElement);
+});
 
 function formEditProfileSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
@@ -76,7 +77,11 @@ function formEditProfileSubmitHandler(evt) {
 
 function formEditCardsSubmitHandler(evt) {
   evt.preventDefault();
-  const newCard = new Card(titleInput.value, imageInput.value);
+  const data = {
+    name: inputName.value,
+    link: inputLink.value
+}
+const newCard = new Card(data, '.add-to-card');
   const cardInputs = newCard.generateCard();
   addCard(cardInputs);
   closePopup(popupNewCard);
@@ -126,6 +131,3 @@ closeAddCardPopupBtn.addEventListener('click', () => {
 closeEditProfilePopupBtn.addEventListener('click', () => {
   closePopup(popupEditProfile);
 });
-
-
-//enableValidation(config);
