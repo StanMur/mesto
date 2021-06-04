@@ -81,7 +81,7 @@ function formEditCardsSubmitHandler(evt) {
     name: inputName.value,
     link: inputLink.value
 }
-const newCard = new Card(data, '.add-to-card');
+const newCard = new Card(data, openCardPopup);
   const cardInputs = newCard.generateCard();
   addCard(cardInputs);
   closePopup(popupNewCard);
