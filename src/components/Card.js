@@ -28,8 +28,9 @@ export class Card {
         this._element = this._getTemplate();
         this._setEventListeners();
         this._element.querySelector('.elements__subtitle').textContent = this._name;
-        this._element.querySelector('.elements__items-img').alt = this._name;
-        this._element.querySelector('.elements__items-img').src = this._link;
+        const imageAltSrc = this._element.querySelector('.elements__items-img');
+        imageAltSrc.src = this._link;
+        imageAltSrc.alt = this._name;
         return this._element;
     }
 

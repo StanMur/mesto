@@ -21,6 +21,8 @@ import {
   UserInfo
 } from './components/UserInfo.js';
 
+export const ESCAPE_BUTTON = 'Escape';
+
 const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-name',
@@ -41,11 +43,10 @@ const addSection = new Section({
 config.elements
 );
 
-const openEditProfilePopupBtn = document.querySelector('.profile__edit-btn');
+const formEditProfileValidator = document.querySelector('.profile__edit-btn');
 const formEditProfile = document.querySelector('.popup__form_profile_change');
-const openAddCardPopupBtn = document.querySelector('.profile__open-add-card');
+const formAddCardValidator = document.querySelector('.profile__open-add-card');
 const formEditCards = document.querySelector('.popup__form_profile_cards');
-const disabledBtn = document.querySelector('.popup__form-btn-cards');
 const editProfile = new FormValidator(config, formEditProfile);
 const addCards = new FormValidator(config, formEditCards);
 const popupEditProfile = new PopupWithForm('.popup_type_edit', formEditProfileSubmitHandler);
@@ -75,11 +76,10 @@ function formEditCardsSubmitHandler(evt, data) {
   evt.preventDefault();
   addSection.addItem(renderCard(data));
   popupAddCard.closePopup();
-  editProfile.toggleButtonState();
   addCards.toggleButtonState();
 };
 
-openEditProfilePopupBtn.addEventListener('click', () => {
+formEditProfileValidator.addEventListener('click', () => {
   const data = userInfo.getUserInfo();
   nameInput.value = data.name;
   jobInput.value = data.job;
@@ -87,11 +87,10 @@ openEditProfilePopupBtn.addEventListener('click', () => {
   popupEditProfile.openPopup();
 });
 
-openAddCardPopupBtn.addEventListener('click', () => {
+formAddCardValidator.addEventListener('click', () => {
   popupAddCard.openPopup();
   formEditCards.reset();
   addCards.toggleButtonState();
-  disabledBtn.disabled = true;
 });
 
 addSection.renderItems();
